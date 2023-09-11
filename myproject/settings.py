@@ -40,7 +40,7 @@ ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
     'crispy_forms',
-    'django_cleanup',
+   'django_cleanup',
 
     'django.contrib.admin',
     'django.contrib.auth',
@@ -49,7 +49,20 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
- e
+    'django.contrib.humanize',
+
+    'ckeditor',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
+    'allauth.socialaccount.providers.github',
+    'blog.apps.BlogConfig',
+    'users.apps.UsersConfig',
+    'notification',
+    'chat',
+    'channels',
+    'friend',
     'videocall',
 ]
 
