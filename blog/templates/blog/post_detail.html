@@ -11,16 +11,20 @@
     <div class="media">
         <img class="rounded-circle article-img" src="{{post.author.profile.image.url}}" alt="image">
         <div class="media-body">
-            <h4 class="d-inline"><a class="mr-2" href="{% url 'profile-detail-view' post.author.pk %}">{{ post.author }}</a></h4>
+            <h5 class="d-inline"><a class="mr-2 text-decoration-none text-dark" href="{% url 'profile-detail-view' post.author.pk %}">{{ post.author }}</a></h5>
             <div id="save-section">
                 {% include 'blog/save_section.html' %}
             </div>
             <p><small class="text-muted">{{ post.date_posted|date:"F d, Y" }}</small></p>
         </div>
     </div>
-    <hr>
-    <h3 class="d-inline"><a class="article-title" href="{% url 'post-detail' post.id %}">{{ post.title }}</a></h3>
-    <img class="article" src="{{post.image.url}}" alt="image">
+
+    {% if post.image %}
+    <img class="article-bg-img" src="{{post.image.url}}" alt="image">
+    {% endif %}
+
+    <h5 class="text-center m-4"><a class="article-title" href="{% url 'post-detail' post.id %}">{{ post.title }}</a></h5>
+
 
     {% if post.author == user %}
         <div class="d-inline float-right">

@@ -16,7 +16,9 @@
           <img class="rounded-circle article-img" src="{{post.author.profile.image.url}}" alt="image">
           <div class="media-body">
               <h4><a class="mr-2" href="{% url 'profile-detail-view' post.author.pk %}">{{ post.author }}</a></h4>
-              <img class="article-img" src="{{post.image.url}}" alt="image">
+              {% if post.image %}
+              <img class="article-bg-img"  src="{{post.image.url}}" alt="image">
+              {% endif %}
 
               <small class="text-muted">{{ post.date_posted|date:"F d, Y" }}</small>
           </div>

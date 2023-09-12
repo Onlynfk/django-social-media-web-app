@@ -18,7 +18,7 @@ import random
 from blog.utils import is_ajax
 
 
-""" Home page with all posts """
+
 def first(request):
     context = {
         'posts':Post.objects.all()
@@ -251,7 +251,7 @@ def PostDetailView(request,pk):
 """ Create post """
 class PostCreateView(LoginRequiredMixin, CreateView):
     model = Post
-    fields =['title', 'content']
+    fields =['title', 'content', 'image']
 
     def form_valid(self, form):
         form.instance.author = self.request.user
@@ -262,7 +262,7 @@ class PostCreateView(LoginRequiredMixin, CreateView):
 """ Update post """
 class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Post
-    fields =['title', 'content']
+    fields =['title', 'content', 'image']
 
     def form_valid(self, form):
         form.instance.author = self.request.user

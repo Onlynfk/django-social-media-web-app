@@ -10,24 +10,23 @@
 
     <article class="content-section" style="overflow: auto; ">
       <div class="media">
-          <img class="rounded-circle article-img " src="{{post.author.profile.image.url}}" alt="image">
+          <img class="rounded-circle article-img" src="{{post.author.profile.image.url}}" alt="image">
           <div class="media-body">
               <p class="mb-0">
-                <a class="mr-2 h4" href="{% url 'profile-detail-view' post.author.pk %}">{{ post.author }}</a>
+                <a class="mr-2 h6" href="{% url 'profile-detail-view' post.author.pk %}">{{ post.author }}</a>
                
               </p>
            
               <small class="text-muted">{{ post.date_posted|date:"F d, Y-h:i A" }}</small>
           </div>
       </div>
-      <hr>
-      <h3><a class="article-title" href="{% url 'post-detail' post.id %}">{{ post.title }}</a></h3>
-      <hr>
-      <p class="article-content">{{ post.content|safe|linebreaks|truncatewords_html:"20" }}<a href="{% url 'post-detail' post.id %}">[Read full post]</a></p>
+      <a class="article-title text-decoration-none" href="{% url 'post-detail' post.id %}">
+      <p class="article-content text-decoration-none text-sm">  {{ post.content|safe|linebreaks|truncatewords_html:"20" }}</p>
+
       {% if post.image %}
-      <img class="articl-img" width="250" height="200" src="{{post.image.url}}" alt="image">
+      <img class="article-bg-img"  src="{{post.image.url}}" alt="image">
       {% endif %}
-    
+    </a>
     </article>
 
     {% endfor %}
@@ -58,25 +57,46 @@
 
 <!-- SIDEBAR -->
 <div class="col-md-4">
-  <div class="content-section" style="border-top: 4px solid red;">
-      <h4>Recent Posts</h4>
+  <div class="content-section">
+      <h5>Recent Posts</h5>
       <br>
       <!-- <p class="text-muted">You can put any information here you'd like. -->
-          <ul class="list-group">
+          <ul class="list-group" style="border:none">
               {% if posts.0 %}
-                <a href="{% url 'post-detail' posts.0.pk %}"><li class="list-group-item list-group-item-light">{{ posts.0.title }}</li></a>
+                <a href="{% url 'post-detail' posts.0.pk %}" class="text-decoration-none"><li class="list-group-item list-group-item-light item-list">
+                  {% if posts.0.image %}
+                  <img src={{posts.0.image.url}} class="thumbnail" width="20px" height="20px"/>
+                  {% endif %}
+                  {{ posts.0.title }}</li></a>
+                
               {% endif %}
               {% if posts.1 %}
-                <a href="{% url 'post-detail' posts.1.pk %}"><li class="list-group-item list-group-item-light">{{ posts.1.title }}</li></a>
+                <a href="{% url 'post-detail' posts.1.pk %}" class="text-decoration-none"><li class="list-group-item list-group-item-light item-list">
+                  {% if posts.1.image %}
+                  <img src={{posts.1.image.url}} class="thumbnail" width="20px" height="20px"/>
+                  {% endif %}
+                  {{ posts.1.title }}</li></a>
               {% endif %}
               {% if posts.2 %}
-                <a href="{% url 'post-detail' posts.2.pk %}"><li class="list-group-item list-group-item-light">{{ posts.2.title }}</li></a>
+                <a href="{% url 'post-detail' posts.2.pk %}" class="text-decoration-none"><li class="list-group-item list-group-item-light item-list">
+                  {% if posts.2.image %}
+                  <img src={{posts.2.image.url}} class="thumbnail" width="20px" height="20px"/>
+                  {% endif %}
+                  {{ posts.2.title }}</li></a>
               {% endif %}
               {% if posts.3 %}
-                <a href="{% url 'post-detail' posts.3.pk %}"><li class="list-group-item list-group-item-light">{{ posts.3.title }}</li></a>
+                <a href="{% url 'post-detail' posts.3.pk %}" class="text-decoration-none"><li class="list-group-item list-group-item-light item-list">
+                  {% if posts.3.image %}
+                  <img src={{posts.3.image.url}} class="thumbnail" width="20px" height="20px"/>
+                  {% endif %}
+                  {{ posts.3.title }}</li></a>
               {% endif %}
               {% if posts.4 %}
-                <a href="{% url 'post-detail' posts.4.pk %}"><li class="list-group-item list-group-item-light">{{ posts.4.title }}</li></a>
+                <a href="{% url 'post-detail' posts.4.pk %}" class="text-decoration-none"><li class="list-group-item list-group-item-light item-list">
+                  {% if posts.4.image %}
+                  <img src={{posts.4.image.url}} class="thumbnail" width="20px" height="20px"/>
+                  {% endif %}
+                  {{ posts.4.title }}</li></a>
               {% endif %}
           </ul>
           <br>
@@ -84,12 +104,19 @@
 
   <!-- PEOPLE YOU CAN FOLLOW -->
 
-  <div class="content-section " style="border-top: 4px solid blue;">
-    <h4>You can follow</h4>
+  <div class="content-section ">
+    <h5>Suggestion for you</h5>
     <br>
-        <ul class="list-group">
+        <ul class="list-group border-0 ">
           {% for user in random_users %}
-            <a href="{% url 'profile-detail-view' user.pk %}"><li class="list-group-item list-group-item-light">{{ user.username }}</li></a>
+          
+            <a href="{% url 'profile-detail-view' user.pk %}" class="text-decoration-none"><li class="list-group-item list-group-item-light item-list">
+              <img class="rounded-circle" style="height: 20px; width: 20px;" src="{{user.profile.image.url}}" alt="">
+
+            <span>  {{ user.username }}<span>
+
+            </li></a>
+
           {% endfor %}
   
         </ul>
