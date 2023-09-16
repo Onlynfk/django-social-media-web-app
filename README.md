@@ -1,4 +1,51 @@
-# Project Setup and Management Script
+## CMedia Scoial Web App
+### Social Media Web Application with Django
+
+This is a social media web application built using Django, featuring various functionalities for users to connect and share their thoughts and experiences.
+
+## Features
+
+- **Sign Up and Login**
+  - Users can create accounts and log in to the platform.
+  
+- **OAuth 2.0 Integration**
+  - Users can sign up or log in using OAuth 2.0 authentication from popular providers like Google and Github.
+
+- **Logout**
+  - Users can securely log out of their accounts.
+
+- **Forgot Password**
+  - Users can reset their passwords if they forget them.
+
+- **Public Profile View**
+  - Users have public profiles where others can view their activity and posts.
+
+- **Create, Edit, Delete Posts**
+  - Users can create, edit, and delete posts, including customized text, pictures, and links.
+
+- **Like and Comment/Reply**
+  - Users can like posts and leave comments or replies.
+
+- **Save and Search Posts**
+  - Users can save posts for later viewing and search for specific posts.
+
+- **Follow and Unfollow Users**
+  - Users can follow or unfollow other users to view their posts on their feed.
+
+- **Friend Request**
+  - Users can send and accept friend requests to connect with others.
+
+- **Notifications**
+  - Users receive notifications for various events, such as new followers, likes, comments, and friend requests.
+
+- **Chats using Websockets**
+  - Real-time chat functionality using websockets for instant messaging with other users.
+
+- **Video Calls**
+  - Users can initiate video calls to communicate with their friends.
+
+
+## Project Setup 
 
 This script provides a set of commands for managing a Django project. It includes commands for running the development server, applying migrations, making migrations, installing packages, and running tests. This README will guide you on how to set up and use the script.
 
@@ -23,11 +70,11 @@ Before using this script, ensure you have the following prerequisites installed 
    ```bash
    ./build.sh install
 
-# Usage
+## Usage
 <p>
 You can use the provided script setup file to perform various tasks related to your project.</p>
 
-# Starting the Django Server
+## Starting the Django Server
 ## To start the Django server, run the following command:
 
 ```bash
@@ -39,7 +86,7 @@ You can use the provided script setup file to perform various tasks related to y
 <p>
 You can use the provided script setup file to perform various tasks related to your project.</p>
 
-# Starting the Django Server
+## Starting the Django Server
 ## To start the Django server, run the following command:
 
 ```bash
@@ -50,7 +97,7 @@ You can use the provided script setup file to perform various tasks related to y
 
 
 
-# Starting the React Development Server
+## Starting the React Development Server
 <p>To start the React development server, run the following command:</p>
 
 ```bash
@@ -59,7 +106,7 @@ You can use the provided script setup file to perform various tasks related to y
 
 <p>This command will check if the React development server is already running on port 3000 and kill the process if necessary. Then, it will change the directory to the web folder, load environment variables from the .env file, and start the server using the command yarn run dev.</p>
 
-# Running Database Migrations
+## Running Database Migrations
 <p>To run database migrations, use the following command:</p>
 
 ```bash
@@ -68,7 +115,7 @@ You can use the provided script setup file to perform various tasks related to y
 
 <p>This command will change the directory to the backend folder, load environment variables from the .env file, activate the virtual environment, and run the Django migration command using python manage.py migrate.</p>
 
-# Creating Database Migrations
+## Creating Database Migrations
 
 <p>To create new database migrations, run the following command:<p>
 
@@ -80,7 +127,7 @@ You can use the provided script setup file to perform various tasks related to y
 
 <p>This command will check if the React development server is already running on port 3000 and kill the process if necessary. Then, it will change the directory to the web folder, load environment variables from the .env file, and start the server using the command yarn run dev.</p>
 
-# Running Database Migrations
+## Running Database Migrations
 <p>To run database migrations, use the following command:</p>
 
 ```bash
