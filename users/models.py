@@ -1,10 +1,10 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-""" Model for User Profile """
 
-
+# I wrote this code
 class Profile(models.Model):
+    """ Model for User Profile """
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     is_online = models.BooleanField(default=False)
     following = models.ManyToManyField(User, related_name="following", blank=True)
@@ -44,3 +44,4 @@ class Relationship(models.Model):
 
     def __str__(self):
         return f"{self.sender}-{self.receiver}-{self.status}"
+# end of code I wrote

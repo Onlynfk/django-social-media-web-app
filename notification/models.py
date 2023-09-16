@@ -3,10 +3,10 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 
-""" Notification model """
 
-
+# I wrote this code
 class Notification(models.Model):
+    """ Notification model """
     NOTIFICATION_TYPES = ((1, 'Like'), (2, 'Follow'), (3, 'Comment'),
                           (4, 'Reply'), (5, 'Like-Comment'), (6, 'Like-Reply'))
 
@@ -20,3 +20,4 @@ class Notification(models.Model):
 
     def __str__(self):
         return '%s - %s - %s - %s - %s' % (self.id, self.post, self.sender, self.user, self.notification_type)
+# end of code I wrote

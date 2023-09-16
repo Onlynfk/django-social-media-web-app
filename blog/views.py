@@ -14,6 +14,8 @@ from django.template.loader import render_to_string
 import random
 from blog.utils import is_ajax
 
+# I wrote this code
+
 
 def first(request):
     context = {
@@ -352,3 +354,4 @@ def AllSaveView(request):
         'saved_posts': saved_posts
     }
     return render(request, 'blog/saved_posts.html', context)
+# end of code I wrote

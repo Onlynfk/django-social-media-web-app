@@ -6,6 +6,7 @@ urlpatterns = [
     path('api/', include('blog.api.urls')),
     path('api/', include('users.api.urls')),
     path('api/chats/', include('chat.api.urls')),
+    path('api/notifications/', include('notification.api.urls')),
 
 ]
 

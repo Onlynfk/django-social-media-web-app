@@ -4,10 +4,11 @@ from django.contrib.auth.models import User
 from django.urls import reverse
 from ckeditor.fields import RichTextField
 
-""" Post model """
+# I wrote this code
 
 
 class Post(models.Model):
+    """ Post model """
     title = models.CharField(max_length=150)
     content = RichTextField(blank=True, null=True)
     date_posted = models.DateTimeField(default=timezone.now)
@@ -30,10 +31,8 @@ class Post(models.Model):
         return reverse('post-detail', kwargs={"pk": self.pk})
 
 
-""" Comment model """
-
-
 class Comment(models.Model):
+    """ Comment model """
     post = models.ForeignKey(Post, related_name="comments", on_delete=models.CASCADE)
     name = models.ForeignKey(User, on_delete=models.CASCADE)
     body = models.TextField(max_length=200)
@@ -49,3 +48,4 @@ class Comment(models.Model):
 
     def get_absolute_url(self):
         return reverse('post-detail', kwargs={"pk": self.pk})
+# end of code I wrote

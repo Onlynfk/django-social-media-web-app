@@ -7,6 +7,7 @@ from friend.models import FriendList
 from django.contrib.auth.models import User
 
 
+# I wrote this code
 @login_required
 def room_enroll(request):
     friends = FriendList.objects.filter(user=request.user)[0].friends.all()
@@ -65,3 +66,4 @@ def room(request, room_name, friend_id):
         'room_name': room_name
     }
     return render(request, 'chat/chatroom.html', context)
+# end of code I wrote

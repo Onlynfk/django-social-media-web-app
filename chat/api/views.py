@@ -10,6 +10,8 @@ from friend.api.serializers import FriendListSerializer
 from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404
 
+# I wrote this code
+
 
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
@@ -67,3 +69,4 @@ def room(request, room_name, friend_id):
         'room_name': room_name
     }
     return Response(context, status=status.HTTP_200_OK)
+# end of code I wrote

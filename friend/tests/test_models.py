@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from friend.models import FriendRequest, FriendList
 
 
+# I wrote this code
 class FriendListModelTestCase(TestCase):
     def test_friend_list_created_for_user(self):
         # Create a test user
@@ -97,3 +98,4 @@ class FriendRequestModelTestCase(TestCase):
 
         # Check if the friend request is no longer active
         self.assertFalse(self.friend_request.is_active)
+# end of code I wrote

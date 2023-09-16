@@ -1,11 +1,14 @@
 from rest_framework.authtoken.views import ObtainAuthToken
-from rest_framework.generics import CreateAPIView
+from rest_framework.generics import CreateAPIView, ListAPIView, RetrieveAPIView
 from rest_framework.permissions import AllowAny
 from django.contrib.auth.models import User
-from .serializers import UserRegistrationSerializer, UserSerializer
+from .serializers import UserRegistrationSerializer, UserSerializer, ProfileSerializer
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
+from users.models import Profile
+
+# I wrote this code
 
 
 class UserRegistrationView(CreateAPIView):
@@ -32,3 +35,19 @@ class SearchUsersAPIView(APIView):
         serializer = UserSerializer(user, many=True)
 
         return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+class ProfileListAPIView(ListAPIView):
+    serializer_class = ProfileSerializer
+
+    def get_queryset(self):
+        return Profile.objects.all().exclude(user=self.request.user)
+
+
+class ProfileDetailAPIView(RetrieveAPIView):
+    serializer_class = ProfileSerializer
+
+    def get_object(self):
+        return self.request.user.profile
+
+# end of code I wrote

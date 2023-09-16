@@ -2,6 +2,8 @@ from django.test import TestCase
 from django.contrib.auth.models import User
 from notification.models import Notification
 
+# I wrote this code
+
 
 class NotificationModelTestCase(TestCase):
     def setUp(self):
@@ -55,3 +57,5 @@ class NotificationModelTestCase(TestCase):
         self.assertEqual(notification.notification_type, 1)
         self.assertEqual(notification.text_preview, '')
         self.assertFalse(notification.is_seen)
+
+# end of code I wrote

@@ -26,11 +26,10 @@ def got_offline(sender, user, request, **kwargs):
     user.profile.save()
 
 
-""" Following and Unfollowing users """
-
-
+# I wrote this code
 @login_required
 def follow_unfollow_profile(request):
+    """ Following and Unfollowing users """
     if request.method == 'POST':
         my_profile = Profile.objects.get(user=request.user)
         pk = request.POST.get('profile_pk')
@@ -48,10 +47,8 @@ def follow_unfollow_profile(request):
     return redirect('profile-list-view')
 
 
-""" User account creation """
-
-
 def register(request):
+    """ User account creation """
     if request.method == 'POST':
         form = UserRegisterForm(request.POST)
         if form.is_valid():
@@ -62,13 +59,12 @@ def register(request):
     else:
         form = UserRegisterForm()
     return render(request, 'users/register.html', {'form': form})
-
-
-""" User profile """
+# end of code I wrote
 
 
 @login_required
 def profile(request):
+    """ User profile """
     if request.method == 'POST':
         u_form = UserUpdateForm(request.POST, instance=request.user)
         p_form = ProfileUpdateForm(request.POST, request.FILES, instance=request.user.profile)
@@ -90,30 +86,30 @@ def profile(request):
     return render(request, 'users/profile.html', context)
 
 
-""" Creating a public profile view """
-
-
 def public_profile(request, username):
+    """ Creating a public profile view """
+
     user = User.objects.get(username=username)
     return render(request, 'users/public_profile.html', {"cuser": user})
 
 
-""" All user profiles """
-
-
+# I wrote this code
 class ProfileListView(LoginRequiredMixin, ListView):
+    """ All user profiles """
+
     model = Profile
     template_name = "users/all_profiles.html"
     context_object_name = "profiles"
 
     def get_queryset(self):
         return Profile.objects.all().exclude(user=self.request.user)
+# end of code I wrote
 
 
-""" User profile details view """
-
-
+# I wrote this code
 class ProfileDetailView(LoginRequiredMixin, DetailView):
+    """ User profile details view """
+
     model = Profile
     template_name = "users/user_profile_details.html"
     context_object_name = "profiles"
@@ -159,12 +155,12 @@ class ProfileDetailView(LoginRequiredMixin, DetailView):
             else:
                 is_friend = False
                 # CASE 1: request from them to you
-                if get_friend_request_or_false(sender=account, receiver=user) is False:
+                if get_friend_request_or_false(sender=account, receiver=user) != False:  # noqa
                     request_sent = FriendRequestStatus.THEM_SENT_TO_YOU.value
                     context['pending_friend_request_id'] = get_friend_request_or_false(
                         sender=account, receiver=user).pk
                 # CASE 2: request you sent to them
-                elif get_friend_request_or_false(sender=user, receiver=account) is False:
+                elif get_friend_request_or_false(sender=user, receiver=account) != False:  # noqa
                     request_sent = FriendRequestStatus.YOU_SENT_TO_THEM.value
                 # CASE 3: no request has been sent
                 else:
@@ -177,6 +173,7 @@ class ProfileDetailView(LoginRequiredMixin, DetailView):
                 friend_requests = FriendRequest.objects.filter(receiver=user, is_active=True)
             except Exception as e:
                 print(e)
+        print("request_sent", request_sent)
         context['request_sent'] = request_sent
         context['is_friend'] = is_friend
         context['is_self'] = is_self
@@ -184,3 +181,4 @@ class ProfileDetailView(LoginRequiredMixin, DetailView):
         # FRIENDS END
 
         return context
+# end of code I wrote

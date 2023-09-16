@@ -10,5 +10,6 @@ urlpatterns = [
     path('search/', views.SearchAPIView.as_view(), name='api-search'),
     path('user_posts/', views.UserPostListView.as_view(), name='api-user-posts'),
     path('saved-posts/', views.SavedPostsAPIView.as_view(), name='api-all-save'),
+    path('my-posts/', views.UserPostListView.as_view(), name='api-user-post'),
 
 ]

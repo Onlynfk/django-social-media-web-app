@@ -2,6 +2,8 @@ from django.test import TestCase
 from django.contrib.auth.models import User
 from users.models import Profile
 
+# I wrote this code
+
 
 class ProfileModelTestCase(TestCase):
     def test_user_creation_creates_profile(self):
@@ -30,3 +32,4 @@ class ProfileModelTestCase(TestCase):
 
         expected_str = f'{test_user.username} Profile'
         self.assertEqual(str(test_user.profile), expected_str)
+# end of code I wrote

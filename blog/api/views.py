@@ -10,6 +10,8 @@ from django.core.exceptions import PermissionDenied
 from django.shortcuts import get_object_or_404
 from django.db.models import Q
 
+# I wrote this code
+
 
 class PostListAPIView(ListAPIView):
     queryset = Post.objects.all()
@@ -117,6 +119,16 @@ class UserPostListView(ListAPIView):
         return Post.objects.filter(author__username=username).order_by('-date_posted')
 
 
+class UserPostsAPIView(ListAPIView):
+    serializer_class = PostSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        user = self.request.user
+        my_posts = Post.objects.filter(author=user)
+        return my_posts
+
+
 class SavedPostsAPIView(ListAPIView):
     serializer_class = PostSerializer
     permission_classes = [IsAuthenticated]
@@ -124,5 +136,6 @@ class SavedPostsAPIView(ListAPIView):
     def get_queryset(self):
         user = self.request.user
         saved_posts = user.blogsave.all()
-        serializer = PostSerializer(saved_posts)
-        return Response(serializer.data, status=status.HTTP_200_OK)
+        return saved_posts
+
+# end of code I wrote

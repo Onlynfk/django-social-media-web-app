@@ -7,6 +7,8 @@ from blog.api.serializers import PostSerializer
 from django.contrib.auth.models import User
 from rest_framework.test import APITestCase
 
+# I wrote this code
+
 
 class PostListAPIViewTestCase(TestCase):
     def setUp(self):
@@ -166,3 +168,5 @@ class SearchAPIViewTestCase(APITestCase):
 
         # Check if the response data is an empty list
         self.assertEqual(response.data, [])
+
+# end of code I wrote
