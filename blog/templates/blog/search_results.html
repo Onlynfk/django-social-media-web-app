@@ -7,10 +7,10 @@
 <div class="col-md-8 m-auto">
   
 <div class="content-section">
-  <h3>Search Results ({{allposts|length}})</h3>
+  <h3>Search Results</h3>
 </div>
 
-    {% if allposts|length == 0 %}
+    {% if allposts|length == 0 and user_results|length == 0 %}
       <div class="content-section">
         <p>Your search did not match any posts ...</p>
 
@@ -22,8 +22,12 @@
       </div>
       <br><br>
     {% endif %}
-    {% for post in allposts %}
 
+    {% if allposts %}
+    <h5>(Articles)</h5>
+    {% endif %}
+
+    {% for post in allposts %}
     <article class="content-section" style="overflow: auto;">
       <div class="media">
           <img class="rounded-circle article-img" src="{{post.author.profile.image.url}}" alt="image">
@@ -41,6 +45,24 @@
     </article>
 
     {% endfor %}
+
+    {% if user_results %}
+    <h5>(Users)</h5>
+    {% endif %}
+    {% for user in user_results %}
+    <article class="content-section" style="overflow: auto;">
+      <div class="media">
+          <img class="rounded-circle article-img" src="{{user.profile.image.url}}" alt="image">
+          <div class="media-body">
+              <p>
+                <a class="mr-2 h4" href="{% url 'profile-detail-view' user.profile.pk %}">{{ user.username }}</a>
+              </p>
+          </div>
+      </div>
+    </article>
+
+    {% endfor %}
+
 
     {% if is_paginated %}
 

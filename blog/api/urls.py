@@ -7,7 +7,7 @@ urlpatterns = [
     path('post/<int:pk>/', views.PostDetailAPIView.as_view(), name='api-post-detail'),
     path('post/<int:pk>/update/', views.PostUpdateDeleteAPIView.as_view(), name='api-post-update'),
     path('post/<int:pk>/delete/', views.PostUpdateDeleteAPIView.as_view(), name='api-post-delete'),
-    path('search/', views.SearchAPIView.as_view(), name='api-post-search'),
+    path('search/', views.SearchAPIView.as_view(), name='api-search'),
     path('user_posts/', views.UserPostListView.as_view(), name='api-user-posts'),
     path('saved-posts/', views.SavedPostsAPIView.as_view(), name='api-all-save'),
 

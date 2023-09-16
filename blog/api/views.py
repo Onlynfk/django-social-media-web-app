@@ -38,12 +38,13 @@ class PostCreateAPIView(APIView):
 
 
 class PostDetailAPIView(APIView):
-    
+
     def get(self, request, pk):
         post = get_object_or_404(Post, pk=pk)
         serializer = PostSerializer(post)
         return Response(serializer.data, status=status.HTTP_200_OK)
-    
+
+
 class PostUpdateDeleteAPIView(APIView):
     permission_classes = [IsAuthenticated]
 
@@ -114,7 +115,6 @@ class UserPostListView(ListAPIView):
     def get_queryset(self):
         username = self.request.query_params.get('username')
         return Post.objects.filter(author__username=username).order_by('-date_posted')
-    
 
 
 class SavedPostsAPIView(ListAPIView):
@@ -124,6 +124,5 @@ class SavedPostsAPIView(ListAPIView):
     def get_queryset(self):
         user = self.request.user
         saved_posts = user.blogsave.all()
-        print(" blogs = saved_posts", saved_posts)
         serializer = PostSerializer(saved_posts)
-        return Response (serializer.data, status=status.HTTP_200_OK)
+        return Response(serializer.data, status=status.HTTP_200_OK)

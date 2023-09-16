@@ -28,10 +28,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 # SECRET_KEY = os.getenv("SECRET_KEY")
-SECRET_KEY = 'g=!&gyqa-qj3q(=-(=$gxrcb_-zb4l)b!#6xa2hrj_m5kxyet)'
+SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get("DEBUG")
 
 ALLOWED_HOSTS = ['*'] 
 
@@ -40,7 +40,7 @@ ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
     'crispy_forms',
-   'django_cleanup',
+    'django_cleanup',
 
     'django.contrib.admin',
     'django.contrib.auth',
@@ -50,26 +50,18 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.humanize',
-
     'ckeditor',
     'allauth',
     'allauth.account',
-    'allauth.socialaccount',
-    'allauth.socialaccount.providers.google',
-    'allauth.socialaccount.providers.github',
     'blog.apps.BlogConfig',
     'users.apps.UsersConfig',
     'notification',
     'chat',
     'channels',
     'friend',
-    'videocall',
-    
     'rest_framework',
     'rest_framework.authtoken',  # Add this line
 ]
-
-
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -154,7 +146,6 @@ REST_FRAMEWORK = {
 }
 
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
 
@@ -184,7 +175,7 @@ LOGIN_URL = 'account_login'
 
 CKEDITOR_CONFIGS = {
     'default': {
-        'width':'auto',
+        'width': 'auto',
     },
 }
 
@@ -198,38 +189,21 @@ EMAIL_HOST_PASSWORD = os.getenv('EMAIL_PASS')  # environment variable containing
 GOOGLE_RECAPTCHA_SECRET_KEY = os.getenv("GOOGLE_RECAPTCHA_SECRET_KEY")
 
 MESSAGE_TAGS = {
-        messages.DEBUG: 'alert-secondary',
-        messages.INFO: 'alert-info',
-        messages.SUCCESS: 'alert-success',
-        messages.WARNING: 'alert-warning',
-        messages.ERROR: 'alert-danger',
+    messages.DEBUG: 'alert-secondary',
+    messages.INFO: 'alert-info',
+    messages.SUCCESS: 'alert-success',
+    messages.WARNING: 'alert-warning',
+    messages.ERROR: 'alert-danger',
 }
 
 ASGI_APPLICATION = "myproject.routing.application"
 
 CHANNEL_LAYERS = {
-    "default":{
-        "BACKEND":"channels.layers.InMemoryChannelLayer"
+    "default": {
+        "BACKEND": "channels.layers.InMemoryChannelLayer"
     },
 }
 
 SITE_ID = 2     # considering 2nd site in 'Sites' to be 127.0.0.1 (for dev)
 
-SOCIALACCOUNT_PROVIDERS = {
-    'google': {
-        'SCOPE': [
-            'profile',
-            'email',
-        ],
-        'AUTH_PARAMS': {
-            'access_type': 'online',
-        }
-    },
-    'github': {
-        'SCOPE': [
-            'user',
-            'repo',
-            'read:org',
-        ],
-    }
-}
+DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'

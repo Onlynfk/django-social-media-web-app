@@ -1,8 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-import uuid
 
-# Create your models here.
 
 class Room(models.Model):
     # room_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
@@ -24,6 +22,4 @@ class Chat(models.Model):
     has_seen = models.BooleanField(default=False)
 
     def __str__(self):
-        return '%s - %s' %(self.id, self.date)
-
-
+        return '%s - %s' % (self.id, self.date)

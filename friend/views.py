@@ -20,12 +20,12 @@ def friends_list_view(request, *args, **kwargs):
                 friend_list = FriendList.objects.get(user=this_user)
             except FriendList.DoesNotExist:
                 return HttpResponse(f"Could not find a friends list for {this_user.username}")
-            
+
             # Must be friends to view a friends list
             if user != this_user:
-                if not user in friend_list.friends.all():
+                if user not in friend_list.friends.all():
                     return HttpResponse("You must be friends to view their friends list.")
-            friends = [] # [(friend1, True), (friend2, False), ...]
+            friends = []  # [(friend1, True), (friend2, False), ...]
             # get the authenticated user's friend list
             auth_user_friend_list = FriendList.objects.get(user=user)
             for friend in friend_list.friends.all():
@@ -34,7 +34,6 @@ def friends_list_view(request, *args, **kwargs):
     else:		
         return HttpResponse("You must be friends to view their friends list.")
     return render(request, "friend/friend_list.html", context)
-
 
 
 def friend_requests(request, *args, **kwargs):
@@ -51,7 +50,6 @@ def friend_requests(request, *args, **kwargs):
     else:
         redirect("login")
     return render(request, "friend/friend_requests.html", context)
-
 
 
 def send_friend_request(request, *args, **kwargs):
@@ -76,15 +74,15 @@ def send_friend_request(request, *args, **kwargs):
                 friend_request = FriendRequest(sender=user, receiver=receiver)
                 friend_request.save()
                 payload['response'] = "Friend request sent."
-            
-            if payload['response'] == None:
+
+            if payload['response'] is None:
                 payload['response'] = "Something went wrong."
         else:
             payload['response'] = "Unable to sent a friend request"
     else:
         payload['response'] = "You must be authenticated to send a friend request."
     return HttpResponse(json.dumps(payload), content_type="application/json")
-    
+
 
 def accept_friend_request(request, *args, **kwargs):
     user = request.user
@@ -155,31 +153,29 @@ def decline_friend_request(request, *args, **kwargs):
     return HttpResponse(json.dumps(payload), content_type="application/json")
 
 
-
-
 def cancel_friend_request(request, *args, **kwargs):
-	user = request.user
-	payload = {}
-	if request.method == "POST" and user.is_authenticated:
-		user_id = request.POST.get("receiver_user_id")
-		if user_id:
-			receiver = User.objects.get(pk=user_id)
-			try:
-				friend_requests = FriendRequest.objects.filter(sender=user, receiver=receiver, is_active=True)
-			except FriendRequest.DoesNotExist:
-				payload['response'] = "Nothing to cancel. Friend request does not exist."
+    user = request.user
+    payload = {}
+    if request.method == "POST" and user.is_authenticated:
+        user_id = request.POST.get("receiver_user_id")
+        if user_id:
+            receiver = User.objects.get(pk=user_id)
+            try:
+                friend_requests = FriendRequest.objects.filter(sender=user, receiver=receiver, is_active=True)
+            except FriendRequest.DoesNotExist:
+                payload['response'] = "Nothing to cancel. Friend request does not exist."
 
-			# There should only ever be one active friend request at any given time. Cancel them all just in case.
-			if len(friend_requests) > 1:
-				for request in friend_requests:
-					request.cancel()
-				payload['response'] = "Friend request cancelled."
-			else:
-				# Cancelling the founded request
-				friend_requests.first().cancel()
-				payload['response'] = "Friend request cancelled."
-		else:
-			payload['response'] = "Unable to cancel that friend request."
-	else:
-		payload['response'] = "You must be authenticated to cancel a friend request."
-	return HttpResponse(json.dumps(payload), content_type="application/json")
+            # There should only ever be one active friend request at any given time. Cancel them all just in case.
+            if len(friend_requests) > 1:
+                for request in friend_requests:
+                    request.cancel()
+                payload['response'] = "Friend request cancelled."
+            else:
+                # Cancelling the founded request
+                friend_requests.first().cancel()
+                payload['response'] = "Friend request cancelled."
+        else:
+            payload['response'] = "Unable to cancel that friend request."
+    else:
+        payload['response'] = "You must be authenticated to cancel a friend request."
+    return HttpResponse(json.dumps(payload), content_type="application/json")

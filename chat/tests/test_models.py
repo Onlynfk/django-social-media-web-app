@@ -2,6 +2,7 @@ from django.test import TestCase
 from django.contrib.auth.models import User
 from chat.models import Room, Chat
 
+
 class RoomModelTestCase(TestCase):
     def setUp(self):
         # Create two test users

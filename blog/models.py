@@ -5,6 +5,8 @@ from django.urls import reverse
 from ckeditor.fields import RichTextField
 
 """ Post model """
+
+
 class Post(models.Model):
     title = models.CharField(max_length=150)
     content = RichTextField(blank=True, null=True)
@@ -14,7 +16,6 @@ class Post(models.Model):
     likes = models.ManyToManyField(User, related_name="blogpost", blank=True)
     saves = models.ManyToManyField(User, related_name="blogsave", blank=True)
     image = models.ImageField(upload_to='blog_pics', blank=True, null=True)
-
 
     def total_likes(self):
         return self.likes.count()
@@ -26,12 +27,14 @@ class Post(models.Model):
         return self.title
 
     def get_absolute_url(self):
-        return reverse('post-detail', kwargs={"pk":self.pk})
+        return reverse('post-detail', kwargs={"pk": self.pk})
 
 
 """ Comment model """
+
+
 class Comment(models.Model):
-    post = models.ForeignKey(Post, related_name="comments" , on_delete=models.CASCADE)
+    post = models.ForeignKey(Post, related_name="comments", on_delete=models.CASCADE)
     name = models.ForeignKey(User, on_delete=models.CASCADE)
     body = models.TextField(max_length=200)
     date_added = models.DateTimeField(auto_now_add=True)
@@ -42,8 +45,7 @@ class Comment(models.Model):
         return self.likes.count()
 
     def __str__(self):
-        return '%s - %s - %s' %(self.post.title, self.name, self.id)
+        return '%s - %s - %s' % (self.post.title, self.name, self.id)
 
     def get_absolute_url(self):
-        return reverse('post-detail', kwargs={"pk":self.pk})
-
+        return reverse('post-detail', kwargs={"pk": self.pk})

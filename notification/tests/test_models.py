@@ -2,6 +2,7 @@ from django.test import TestCase
 from django.contrib.auth.models import User
 from notification.models import Notification
 
+
 class NotificationModelTestCase(TestCase):
     def setUp(self):
         # Create test users

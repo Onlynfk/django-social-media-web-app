@@ -5,6 +5,8 @@ from .models import Profile, Relationship
 from friend.models import FriendList
 
 """ Creating profile when an user creates an account """
+
+
 @receiver(post_save, sender=User)
 def create_profile(sender, instance, created, **kwargs):
     if created:
@@ -12,6 +14,8 @@ def create_profile(sender, instance, created, **kwargs):
 
 
 """ Saving profile when an user updates his/her account """
+
+
 @receiver(post_save, sender=User)
 def save_profile(sender, instance, **kwargs):
     instance.profile.save()
@@ -29,6 +33,8 @@ def post_save_add_to_friends(sender, created, instance, **kwargs):
 
 
 """ Creating friendlist when an user creates an account """
+
+
 @receiver(post_save, sender=User)
 def create_friendlist(sender, instance, created, **kwargs):
     if created:

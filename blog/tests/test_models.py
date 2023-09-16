@@ -4,6 +4,7 @@ from django.utils import timezone
 from django.contrib.auth.models import User
 from blog.models import Post, Comment
 
+
 class PostModelTestCase(TestCase):
     def setUp(self):
         # Create a test user

@@ -3,18 +3,18 @@ from django.contrib.auth.models import User
 
 """ Model for User Profile """
 
+
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     is_online = models.BooleanField(default=False)
     following = models.ManyToManyField(User, related_name="following", blank=True)
     friends = models.ManyToManyField(User, related_name='my_friends', blank=True)
-    bio = models.CharField(default="",blank=True,null=True,max_length=350)
-    date_of_birth = models.CharField(blank=True,max_length=150)
+    bio = models.CharField(default="", blank=True, null=True, max_length=350)
+    date_of_birth = models.CharField(blank=True, max_length=150)
     updated = models.DateTimeField(auto_now=True)
     created = models.DateTimeField(auto_now_add=True)
-    image = models.ImageField(default='default.jpg', upload_to='profile_pics',blank=True, null=True)
-    bio = models.TextField(blank=True, null=True)
-
+    image = models.ImageField(default='default.jpg', upload_to='profile_pics', blank=True, null=True)
+    bio = models.TextField(blank=True, null=True, default="about me")
 
     def profile_posts(self):
         return self.user.post_set.all()
@@ -29,11 +29,11 @@ class Profile(models.Model):
         return f'{self.user.username} Profile'
 
 
-
 STATUS_CHOICES = (
-    ('send','send'),
-    ('accepted','accepted')
+    ('send', 'send'),
+    ('accepted', 'accepted')
 )
+
 
 class Relationship(models.Model):
     sender = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='friend_sender')
@@ -44,4 +44,3 @@ class Relationship(models.Model):
 
     def __str__(self):
         return f"{self.sender}-{self.receiver}-{self.status}"
-

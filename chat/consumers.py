@@ -2,12 +2,14 @@ from chat.models import Chat, Room
 import json
 from channels.generic.websocket import AsyncWebsocketConsumer
 from django.contrib.auth.models import User
-from asgiref.sync import sync_to_async, async_to_sync
+from asgiref.sync import sync_to_async
 
 
 """MESSAGE DB ENTRY"""
+
+
 @sync_to_async
-def create_new_message(me,friend,message,room_id):
+def create_new_message(me, friend, message, room_id):
     get_room = Room.objects.filter(room_id=room_id)[0]
     author_user = User.objects.filter(username=me)[0]
     friend_user = User.objects.filter(username=friend)[0]
@@ -16,7 +18,8 @@ def create_new_message(me,friend,message,room_id):
         friend=friend_user,
         room_id=get_room,
         text=message)
-        
+    new_chat.save()
+
 
 class ChatRoomConsumer(AsyncWebsocketConsumer):
 
@@ -56,8 +59,6 @@ class ChatRoomConsumer(AsyncWebsocketConsumer):
             }
         )
 
-
-
     """Messages"""
     async def chatroom_message(self, event):
         message = event['message']
@@ -65,10 +66,9 @@ class ChatRoomConsumer(AsyncWebsocketConsumer):
         user_image = event['user_image']
 
         await create_new_message(me=self.scope["user"], friend=username, message=message, room_id=self.room_name)
-        
+
         await self.send(text_data=json.dumps({
             'message': message,
             'username': username,
             'user_image': user_image,
         }))
-

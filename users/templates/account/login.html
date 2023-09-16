@@ -1,6 +1,5 @@
 {% extends "blog/base.html" %}
 {% load crispy_forms_tags %}
-{% load socialaccount %}
 
 {% block title %}Login{% endblock %}
 
@@ -38,7 +37,7 @@
     <form action="" method="POST">
         {% csrf_token %}
         <fieldset class="form-group">
-            <legend class="border-bottom mb-4">Login</legend>
+            <legend class="border-bottom mb-4">Welcome Back!</legend>
             {{form|crispy}}
         </fieldset>
         <div class="form-group">
@@ -48,25 +47,6 @@
             </small>
         </div>
     </form>
-    <div class="or-container">
-        <div class="line-separator"></div>
-        <div class="or-label">or</div>
-        <div class="line-separator"></div>
-    </div>
-    <div class="row">
-        <div class="col-md-12"> 
-            <a class="btn btn-lg btn-google btn-block btn-outline" href="{% provider_login_url 'google' %}">
-                <img src="https://img.icons8.com/color/22/000000/google-logo.png"> Sign In with <b>Google</b>
-            </a> 
-        </div>
-    </div> <br>
-    <div class="row">
-        <div class="col-md-12"> 
-            <a class="btn btn-lg btn-google btn-block btn-outline" href="{% provider_login_url 'github' %}">
-                <img src="https://img.icons8.com/material-sharp/24/000000/github.png"/> Sign In with <b>Github</b>
-            </a> 
-        </div>
-    </div> <br>
     <div class="border-top pt-3">
         <small class="text-muted">
             Need an Account? <a class="ml-2" href="{% url 'register' %}">Sign Up Now</a>
