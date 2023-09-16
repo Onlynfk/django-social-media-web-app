@@ -78,12 +78,6 @@ You can use the provided script setup file to perform various tasks related to y
 
 <p>This command will change the directory to the backend folder, load environment variables from the .env file, activate the virtual environment, and create new migrations using python manage.py makemigrations.</p>
 
-<p><b>Note:</b> Make sure you have made the necessary changes to your Django models before running this command.</p>
-
-
-#  Ad. Then, it will activate the virtual environment, load environment variables from the .env file, and start the server using the command python manage.py runserver.</p>
-
-
 <p>This command will check if the React development server is already running on port 3000 and kill the process if necessary. Then, it will change the directory to the web folder, load environment variables from the .env file, and start the server using the command yarn run dev.</p>
 
 # Running Database Migrations
