@@ -3,47 +3,19 @@
 
 This is a social media web application built using Django, featuring various functionalities for users to connect and share their thoughts and experiences.
 
-## Features
-
+### Features
 - **Sign Up and Login**
-  - Users can create accounts and log in to the platform.
-  
 - **OAuth 2.0 Integration**
-  - Users can sign up or log in using OAuth 2.0 authentication from popular providers like Google and Github.
-
 - **Logout**
-  - Users can securely log out of their accounts.
-
 - **Forgot Password**
-  - Users can reset their passwords if they forget them.
-
 - **Public Profile View**
-  - Users have public profiles where others can view their activity and posts.
-
 - **Create, Edit, Delete Posts**
-  - Users can create, edit, and delete posts, including customized text, pictures, and links.
-
 - **Like and Comment/Reply**
-  - Users can like posts and leave comments or replies.
-
 - **Save and Search Posts**
-  - Users can save posts for later viewing and search for specific posts.
-
 - **Follow and Unfollow Users**
-  - Users can follow or unfollow other users to view their posts on their feed.
-
 - **Friend Request**
-  - Users can send and accept friend requests to connect with others.
-
 - **Notifications**
-  - Users receive notifications for various events, such as new followers, likes, comments, and friend requests.
-
 - **Chats using Websockets**
-  - Real-time chat functionality using websockets for instant messaging with other users.
-
-- **Video Calls**
-  - Users can initiate video calls to communicate with their friends.
-
 
 ## Project Setup 
 
