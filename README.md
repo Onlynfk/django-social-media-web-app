@@ -19,8 +19,8 @@ This is a social media web application built using Django, featuring various fun
 - **Notifications**
 - **Chats using Websockets**
 
-<div align="center">
-<img width="80%" align="center" src="./image.png"/>
+<div align="start">
+<img width="80%" align="start" src="./image.png"/>
 </div>
 
 ## Project Setup
