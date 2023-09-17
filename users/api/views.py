@@ -1,6 +1,6 @@
 from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.generics import CreateAPIView, ListAPIView, RetrieveAPIView
-from rest_framework.permissions import AllowAny
+from rest_framework.permissions import AllowAny, IsAuthenticated
 from django.contrib.auth.models import User
 from .serializers import UserRegistrationSerializer, UserSerializer, ProfileSerializer
 from rest_framework.views import APIView
@@ -22,6 +22,8 @@ class UserLoginView(ObtainAuthToken):
 
 
 class SearchUsersAPIView(APIView):
+    permission_classes = (IsAuthenticated,)
+    
     def get(self, request):
         query = self.request.query_params.get('query')
 
@@ -38,6 +40,8 @@ class SearchUsersAPIView(APIView):
 
 
 class ProfileListAPIView(ListAPIView):
+    permission_classes = (IsAuthenticated,)
+    
     serializer_class = ProfileSerializer
 
     def get_queryset(self):
@@ -45,6 +49,7 @@ class ProfileListAPIView(ListAPIView):
 
 
 class ProfileDetailAPIView(RetrieveAPIView):
+    permission_classes = (IsAuthenticated,)
     serializer_class = ProfileSerializer
 
     def get_object(self):

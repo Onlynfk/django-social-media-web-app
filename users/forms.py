@@ -4,7 +4,7 @@ from django.contrib.auth.forms import UserCreationForm
 from .models import Profile
 from PIL import Image
 
-
+# I wrote this code
 class UserRegisterForm(UserCreationForm):
     email = forms.EmailField()
 
@@ -51,3 +51,5 @@ class ProfileUpdateForm(forms.ModelForm):
             resized_image.save(img.image.path)
 
         return img
+    
+# end of code I wrote

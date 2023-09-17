@@ -9,7 +9,6 @@ class Profile(models.Model):
     is_online = models.BooleanField(default=False)
     following = models.ManyToManyField(User, related_name="following", blank=True)
     friends = models.ManyToManyField(User, related_name='my_friends', blank=True)
-    bio = models.CharField(default="", blank=True, null=True, max_length=350)
     date_of_birth = models.CharField(blank=True, max_length=150)
     updated = models.DateTimeField(auto_now=True)
     created = models.DateTimeField(auto_now_add=True)
