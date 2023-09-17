@@ -14,7 +14,7 @@ run_server() {
     # Activate the virtual environment
     source venv/bin/activate
     flake8
-    python3 manage.py runserver
+    python manage.py runserver
 }
 run_packages() {
     # Change directory to your Django project folder
@@ -29,7 +29,7 @@ run_packages() {
     # Run flake8
     flake8
     # Run migrations
-    python3 manage.py migrate
+    python manage.py migrate
 }
 run_tests() {
     # Change directory to your Django project folder
@@ -54,7 +54,7 @@ run_migrations() {
     flake8
 
     # Run migrate
-    python3 manage.py migrate
+    python manage.py migrate
 }
 # Function to make migrations
 make_migrations() {
@@ -66,7 +66,7 @@ make_migrations() {
     flake8
 
     # Run makemigrations
-    python3 manage.py makemigrations
+    python manage.py makemigrations
 }
 
 
